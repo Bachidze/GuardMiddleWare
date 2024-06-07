@@ -38,11 +38,18 @@ export class ExpenseService {
 
     update(id: number, expense: UpdateExpenseDTO) {
         const index = this.expenses.findIndex(el => el.id === id);
-        if (index === -1) return null
+        if (index === -1) return null;
         this.expenses[index] = {
             ...this.expenses[index],
             ...expense,
         };
         return this.expenses[index];
+    }
+
+    delete(id: number) {
+        const index = this.expenses.findIndex(expense => expense.id === id);
+        if (index === -1) return null;
+        const deletedExpense = this.expenses.splice(index, 1);
+        return deletedExpense[0];
     }
 }
