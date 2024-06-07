@@ -7,7 +7,7 @@ export class LoggerMiddleWare implements NestMiddleware{
         const APIKEY = req.headers['x-api-key']
         console.log(APIKEY)
         if(APIKEY !== "gela")
-            return res.json({message:"bad request"})
+            return res.json({message:"choose correct X-API-KEY"})
             
         next()
     }

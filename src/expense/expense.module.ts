@@ -7,4 +7,8 @@ import { LoggerMiddleWare } from './logger.middleware';
   controllers: [ExpenseController],
   providers: [ExpenseService]
 })
-export class ExpenseModule {}
+export class ExpenseModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleWare).forRoutes({path:"*",method:RequestMethod.ALL})
+  }
+}
